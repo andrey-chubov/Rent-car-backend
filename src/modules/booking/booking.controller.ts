@@ -13,7 +13,7 @@ import { ValidationFilter } from 'src/filters/validation.filter';
 import { UserValidationPipes } from 'src/pipes/validation.pipe';
 import { ErrorBadRequest } from 'src/shared/responses/errorResponse';
 import { BookingService } from './booking.service';
-import { CreateBookingDto } from './dto/create-booking.dto';
+import { CreateBookingDto } from './dto/createBooking.dto';
 import { Booking } from './entities/booking.entity';
 
 @ApiTags('Booking')

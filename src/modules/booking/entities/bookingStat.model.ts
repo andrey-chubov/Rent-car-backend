@@ -1,16 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { BookingStatisticsResponse } from 'src/shared/responses/bookingStatisticResponse';
 
-export interface BookingCarStatisticsModelData {
-  cars_id: number;
-  booking_count: number;
-  longest_booking_duration: number;
-  min_price: number;
-  max_price: number;
-  shortest_booking_duration: number;
-  all_price_sum: number;
-  average_booking_duration: number;
-  car_number: string;
-}
 class BookingCarStatisticsModel {
   @ApiProperty({
     description: 'Car identifier',
@@ -57,7 +47,7 @@ class BookingCarStatisticsModel {
     example: 15,
   })
   averageBookingDuration: number;
-  constructor(bookingCarStatisticsModelData: BookingCarStatisticsModelData) {
+  constructor(bookingCarStatisticsModelData: BookingStatisticsResponse) {
     this.carId = bookingCarStatisticsModelData.cars_id;
     this.bookingCount = bookingCarStatisticsModelData.booking_count;
     this.longestBookingDuration =

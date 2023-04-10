@@ -1,4 +1,4 @@
-export const CAR_BUSY = 'CAR_BUSY';
+export const CAR_NOT_AVAILABLE_FOR_BOOKING = 'CAR_NOT_AVAILABLE_FOR_BOOKING';
 export const INTERVAL_LESS = 'INTERVAL_LESS';
 export const WEEKEND = 'WEEKEND';
 export const MAX_30_DAYS = 'MAX_30_DAYS';

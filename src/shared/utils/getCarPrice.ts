@@ -1,7 +1,7 @@
 import { getNumberOfDays } from './getNumberDay';
 
-export const getPrice = (dateSt: string, dateFn: string): number => {
-  const duration = getNumberOfDays(dateSt, dateFn);
+export const getCarPrice = (dateStart: string, dateFinish: string): number => {
+  const duration = getNumberOfDays(dateStart, dateFinish);
 
   if (duration <= 4) {
     return duration * 1000;

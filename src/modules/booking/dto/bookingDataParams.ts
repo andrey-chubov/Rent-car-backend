@@ -8,7 +8,7 @@ class GetBookingByDateQuery {
     example: '2022-02-01',
   })
   @IsDateString()
-  dateBegin: string;
+  dateStart: string;
 
   @ApiProperty({
     type: String,

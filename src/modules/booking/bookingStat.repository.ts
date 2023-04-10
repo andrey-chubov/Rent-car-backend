@@ -86,7 +86,7 @@ export class BookingStatisticRepository {
       GROUP BY (cars.id, booking.cars_id, booking.date_start ) 
       ORDER BY cars.id ASC;
     `,
-      [params.dateBegin, params.dateFinish],
+      [params.dateStart, params.dateFinish],
     );
 
     return databaseResponse.rows.map(
@@ -114,7 +114,7 @@ export class BookingStatisticRepository {
       WHERE cars.id=$1 AND date_start BETWEEN $2 AND $3
       GROUP BY (cars.id, booking.cars_id, booking.date_start); 
     `,
-      [id, params.dateBegin, params.dateFinish],
+      [id, params.dateStart, params.dateFinish],
     );
 
     return databaseResponse.rows.map(

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDateString, IsNotEmpty, IsNumber, Validate } from 'class-validator';
-import { IsWeekEnd } from 'src/decorators/IsWeekEnd';
-import { WEEKEND } from 'src/shared/errors/errorMessages';
+import { IsWeekEnd } from '../../../decorators/IsWeekEnd';
+import { WEEKEND } from '../../../shared/errors/errorMessages';
 
 export class CreateBookingDto {
   @ApiProperty({
@@ -13,7 +13,7 @@ export class CreateBookingDto {
   @Validate(IsWeekEnd, [0, 6], {
     message: WEEKEND,
   })
-  dateSt: string;
+  dateStart: string;
 
   @ApiProperty({
     type: String,
@@ -24,7 +24,7 @@ export class CreateBookingDto {
   @Validate(IsWeekEnd, [0, 6], {
     message: WEEKEND,
   })
-  dateFn: string;
+  dateFinish: string;
 
   @ApiProperty({
     type: Number,

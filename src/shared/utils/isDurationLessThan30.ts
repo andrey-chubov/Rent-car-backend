@@ -1,9 +1,9 @@
-import { ValidationException } from 'src/exceptions/validation.exception';
+import { ValidationException } from '../../exceptions/validation.exception';
 import { MAX_30_DAYS } from '../errors/errorMessages';
 import { getNumberOfDays } from './getNumberDay';
 
-export const isDurationLessThan30 = (dateSt: string, dateFn: string): void => {
-  if (getNumberOfDays(dateSt, dateFn) > 30) {
+export const isDurationLessThan30 = (dateStart: string, dateFinish: string): void => {
+  if (getNumberOfDays(dateStart, dateFinish) > 30) {
     throw new ValidationException(MAX_30_DAYS);
   }
 };
