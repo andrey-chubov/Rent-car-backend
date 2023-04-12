@@ -14,7 +14,7 @@ import { UserValidationPipes } from 'src/pipes/validation.pipe';
 import { ErrorBadRequest } from 'src/shared/responses/errorResponse';
 import { BookingService } from './booking.service';
 import { CreateBookingDto } from './dto/createBooking.dto';
-import { Booking } from './entities/booking.entity';
+import { BookingResponseDto } from 'src/shared/responses/bookingResponse.dto';
 
 @ApiTags('Booking')
 @Controller('booking')
@@ -25,7 +25,7 @@ export class BookingController {
   })
   @ApiResponse({
     status: HttpStatus.CREATED,
-    type: Booking,
+    type: BookingResponseDto,
     description: 'Created booking car',
   })
   @ApiResponse({
@@ -36,7 +36,7 @@ export class BookingController {
   @UsePipes(UserValidationPipes)
   @UseFilters(new ValidationFilter())
   @Post()
-  create(@Body() createBookingDto: CreateBookingDto) {
+  create(@Body() createBookingDto: CreateBookingDto): Promise<BookingResponseDto>  {
     return this.bookingService.create(createBookingDto);
   }
 
@@ -45,7 +45,7 @@ export class BookingController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: [Booking],
+    type: [BookingResponseDto],
     description: 'Get booking by car ID',
   })
   @ApiResponse({
@@ -54,7 +54,7 @@ export class BookingController {
     description: 'Bad Request',
   })
   @Get(':id')
-  getByCarId(@Param('id') id: number) {
+  getByCarId(@Param('id') id: number): Promise<BookingResponseDto[]>  {
     return this.bookingService.getBookingByCar(id);
   }
 
@@ -63,7 +63,7 @@ export class BookingController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: [Booking],
+    type: [BookingResponseDto],
     description: 'Get all booking',
   })
   @ApiResponse({
@@ -72,7 +72,7 @@ export class BookingController {
     description: 'Bad Request',
   })
   @Get()
-  getAllBooking() {
+  getAllBooking(): Promise<BookingResponseDto[]>  {
     return this.bookingService.getAllBooking();
   }
 }

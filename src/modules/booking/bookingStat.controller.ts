@@ -13,7 +13,8 @@ import { UserValidationPipes } from 'src/pipes/validation.pipe';
 import { ErrorBadRequest } from 'src/shared/responses/errorResponse';
 import { BookingStatisticService } from './bookingStat.service';
 import GetBookingByDateQuery from './dto/bookingDataParams';
-import BookingCarStatisticsModel from './entities/bookingStat.model';
+import { INCORRECT_PARAMS } from 'src/shared/errors/errorMessages';
+import { BookingStatResponseDto } from 'src/shared/responses/bookingStatResponse.dto';
 
 @ApiTags('Statistic')
 @Controller('statistic')
@@ -27,7 +28,7 @@ export class BookingStatisticController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: [BookingCarStatisticsModel],
+    type: [BookingStatResponseDto],
     description: 'Get all booking statistic',
   })
   @ApiResponse({
@@ -36,7 +37,7 @@ export class BookingStatisticController {
     description: 'Bad Request',
   })
   @Get('all-cars-bookings')
-  getAllCarsBookings() {
+  getAllCarsBookings():Promise<BookingStatResponseDto[]> {
     return this.bookingStatisticService.getAllCarsBookings();
   }
 
@@ -45,7 +46,7 @@ export class BookingStatisticController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: [BookingCarStatisticsModel],
+    type: [BookingStatResponseDto],
     description: 'Get all booking statistic by date period',
   })
   @ApiResponse({
@@ -56,7 +57,7 @@ export class BookingStatisticController {
   @UsePipes(UserValidationPipes)
   @UseFilters(new ValidationFilter())
   @Get('all-cars-bookings-date')
-  getAllCarsBookingsByDate(@Query() query: GetBookingByDateQuery) {
+  getAllCarsBookingsByDate(@Query() query: GetBookingByDateQuery):Promise<BookingStatResponseDto[]> {
     return this.bookingStatisticService.getAllCarsBookingsByDate(query);
   }
 
@@ -65,7 +66,7 @@ export class BookingStatisticController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: BookingCarStatisticsModel,
+    type: BookingStatResponseDto,
     description: 'Get booking statistic by car ID',
   })
   @ApiResponse({
@@ -74,7 +75,7 @@ export class BookingStatisticController {
     description: 'Bad Request',
   })
   @Get('car-bookings/:id')
-  getCarBookings(@Param('id') id: number) {
+  getCarBookings(@Param('id') id: number):Promise<BookingStatResponseDto> {
     return this.bookingStatisticService.getCarBookings(id);
   }
 
@@ -83,7 +84,7 @@ export class BookingStatisticController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: BookingCarStatisticsModel,
+    type: BookingStatResponseDto,
     description: 'Get booking statistic by car ID an by date period',
   })
   @ApiResponse({
@@ -95,7 +96,7 @@ export class BookingStatisticController {
   getCarBookingsByDate(
     @Param('id') id: number,
     @Query() query: GetBookingByDateQuery,
-  ) {
+  ):Promise<BookingStatResponseDto> {
     return this.bookingStatisticService.getCarBookingsByDate(id, query);
   }
 }

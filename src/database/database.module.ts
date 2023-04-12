@@ -4,7 +4,7 @@ import {
   ConfigurableDatabaseModule,
   CONNECTION_POOL,
   DATABASE_OPTIONS,
-} from './database.module-definition';
+} from './database.moduleDefinition';
 import DatabaseService from './database.service';
 import DatabaseOptions from './databaseOptions';
 

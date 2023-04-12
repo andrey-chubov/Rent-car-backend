@@ -13,7 +13,6 @@ describe('isWeekEnd', () => {
       },
       expected: 1,
     },
-
     {
       toString: () => 'should pass DTO',
       myBodyObject: {

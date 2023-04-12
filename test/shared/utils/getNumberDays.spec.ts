@@ -4,8 +4,8 @@ describe('getNumberOfDays', () => {
   const cases = [
     {
       toString: () => 'should be return 1',
-      start: '2023-01-01',
-      end: '2023-01-02',
+      start: new Date('2023-01-01'),
+      end: new Date('2023-01-02'),
       expected: 1,
     },
   ];

@@ -1,14 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import DatabaseService from 'src/database/database.service';
-import { INCORRECT_PARAMS } from 'src/shared/errors/errorMessages';
 import GetBookingByDateQuery from './dto/bookingDataParams';
-import BookingCarStatisticsModel from './entities/bookingStat.model';
+import { BookingStatResponseDto } from 'src/shared/responses/bookingStatResponse.dto';
+import { plainToInstance } from 'class-transformer';
+
 
 @Injectable()
 export class BookingStatisticRepository {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async getAllCarsBookings() {
+  async getAllCarsBookings(): Promise<BookingStatResponseDto[]> {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 
@@ -30,12 +31,10 @@ export class BookingStatisticRepository {
       [],
     );
 
-    return databaseResponse.rows.map(
-      (databaseRow) => new BookingCarStatisticsModel(databaseRow),
-    );
+    return plainToInstance(BookingStatResponseDto, databaseResponse.rows)
   }
 
-  async getCarBookings(id: number) {
+  async getCarBookings(id: number) : Promise<BookingStatResponseDto>  {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 
@@ -57,15 +56,11 @@ export class BookingStatisticRepository {
       [id],
     );
 
-    return databaseResponse.rows.map(
-      (databaseRow) => new BookingCarStatisticsModel(databaseRow),
-    );
+    return plainToInstance(BookingStatResponseDto, databaseResponse.rows[0])
   }
 
-  async getAllCarsBookingsByDatePeriod(params: GetBookingByDateQuery) {
-    if (!params) {
-      throw new BadRequestException(INCORRECT_PARAMS);
-    }
+  async getAllCarsBookingsByDatePeriod(params: GetBookingByDateQuery) : Promise<BookingStatResponseDto[]>  {
+    
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 
@@ -89,12 +84,10 @@ export class BookingStatisticRepository {
       [params.dateStart, params.dateFinish],
     );
 
-    return databaseResponse.rows.map(
-      (databaseRow) => new BookingCarStatisticsModel(databaseRow),
-    );
+    return plainToInstance(BookingStatResponseDto, databaseResponse.rows)
   }
 
-  async getCarBookingsByDatePeriod(id: number, params: GetBookingByDateQuery) {
+  async getCarBookingsByDatePeriod(id: number, params: GetBookingByDateQuery) : Promise<BookingStatResponseDto> {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 
@@ -117,8 +110,6 @@ export class BookingStatisticRepository {
       [id, params.dateStart, params.dateFinish],
     );
 
-    return databaseResponse.rows.map(
-      (databaseRow) => new BookingCarStatisticsModel(databaseRow),
-    );
+    return plainToInstance(BookingStatResponseDto, databaseResponse.rows[0])
   }
 }

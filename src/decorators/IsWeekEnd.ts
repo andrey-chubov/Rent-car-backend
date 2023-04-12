@@ -3,17 +3,18 @@ import {
   ValidatorConstraintInterface,
   ValidationArguments,
 } from '@nestjs/class-validator';
+import { WEEKEND } from '../shared/errors/errorMessages';
 
 @ValidatorConstraint()
 export class IsWeekEnd implements ValidatorConstraintInterface {
-  validate(text: string, validationArguments: ValidationArguments) {
+  validate(date: Date, validationArguments: ValidationArguments): boolean {
     return (
-      new Date(text).getDay() !== validationArguments.constraints[0] &&
-      new Date(text).getDay() !== validationArguments.constraints[1]
+      date.getDay() !== validationArguments.constraints[0] &&
+      date.getDay() !== validationArguments.constraints[1]
     );
   }
 
-  defaultMessage(args: ValidationArguments) {
-    return 'Date wrong!';
+  defaultMessage(args: ValidationArguments): string {
+    return WEEKEND;
   }
 }

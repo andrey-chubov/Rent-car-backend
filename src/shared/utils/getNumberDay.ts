@@ -1,10 +1,7 @@
 import { ONE_DAY } from "../constants";
 
-export function getNumberOfDays(start: string, end: string): number {
-  const date1 = new Date(start);
-  const date2 = new Date(end);
-
-  const diffInTime: number = date2.getTime() - date1.getTime();
+export function getNumberOfDays(start: Date, end: Date): number {
+  const diffInTime: number = end.getTime() - start.getTime();
   const diffInDays: number = Math.round(diffInTime / ONE_DAY);
 
   return Math.abs(diffInDays);
