@@ -1,6 +1,6 @@
 import { assertDurationLessThan30 } from '../../../src/shared/utils/assertDurationLessThan30';
 import { ValidationException } from '../../../src/exceptions/validation.exception';
-import { MAX_30DAYS } from '../../../src/shared/errors/errorMessages';
+import { DATE_DIFFERENCE_SHOULD_BE_LESS_THAN_30_DAYS } from '../../../src/shared/errors/errorMessages';
 
 describe('assertDurationLessThan30', () => {
   const cases = [
@@ -16,7 +16,7 @@ describe('assertDurationLessThan30', () => {
         '2 should be return exception, when duration bigger than 30',
       start: new Date('2023-01-01'),
       end: new Date('2023-03-02'),
-      expected: new ValidationException(MAX_30DAYS),
+      expected: new ValidationException(DATE_DIFFERENCE_SHOULD_BE_LESS_THAN_30_DAYS),
     },
   ];
 

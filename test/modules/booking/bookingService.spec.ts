@@ -18,7 +18,7 @@ describe('BookingService', () => {
   const mockDtoCarBusy = CreateBookingDtoBuilder.forCarBusy().result;
   const mockDtoInterval = CreateBookingDtoBuilder.forInterval().result;
   const spyRepository = jest
-    .spyOn(stubBookingRepository, 'getBookingsByCarID')
+    .spyOn(stubBookingRepository, 'getBookingByCarId')
     .mockReturnValueOnce([])
     .mockReturnValueOnce([mockResponse])
     .mockReturnValueOnce([mockResponse]);

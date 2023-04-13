@@ -55,7 +55,7 @@ export class BookingController {
   })
   @Get(':id')
   getByCarId(@Param('id') id: number): Promise<BookingResponseDto[]>  {
-    return this.bookingService.getBookingByCar(id);
+    return this.bookingService.getBookingByCarId(id);
   }
 
   @ApiOperation({

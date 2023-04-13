@@ -20,7 +20,7 @@ export class BookingRepository {
     return plainToInstance(BookingResponseDto, databaseResponse.rows[0]);
   }
 
-  async getBookingsByCarID(id: number):Promise<BookingResponseDto[]> {
+  async getBookingByCarId(id: number):Promise<BookingResponseDto[]> {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT * FROM booking WHERE cars_id=$1

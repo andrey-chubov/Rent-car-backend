@@ -7,7 +7,7 @@ export const createFakeBookingRepository = (): Record<
 > => ({
   create: jest.fn().mockReturnValue(mockResponse),
   getAllBooking: jest.fn(),
-  getBookingsByCarID: jest.fn(),
+  getBookingByCarId: jest.fn(),
 });
 
 const mockResponse = BookingResponseDtoBuilder.defaultAll().result;

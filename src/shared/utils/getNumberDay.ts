@@ -1,4 +1,4 @@
-import { ONE_DAY } from "../constants";
+import { ONE_DAY } from "../../config";
 
 export function getNumberOfDays(start: Date, end: Date): number {
   const diffInTime: number = end.getTime() - start.getTime();

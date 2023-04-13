@@ -37,8 +37,8 @@ export class BookingStatisticController {
     description: 'Bad Request',
   })
   @Get('all-cars-bookings')
-  getAllCarsBookings():Promise<BookingStatResponseDto[]> {
-    return this.bookingStatisticService.getAllCarsBookings();
+  getAllBooking():Promise<BookingStatResponseDto[]> {
+    return this.bookingStatisticService.getAllBooking();
   }
 
   @ApiOperation({
@@ -57,8 +57,8 @@ export class BookingStatisticController {
   @UsePipes(UserValidationPipes)
   @UseFilters(new ValidationFilter())
   @Get('all-cars-bookings-date')
-  getAllCarsBookingsByDate(@Query() query: GetBookingByDateQuery):Promise<BookingStatResponseDto[]> {
-    return this.bookingStatisticService.getAllCarsBookingsByDate(query);
+  getAllBookingByDatePeriod(@Query() query: GetBookingByDateQuery):Promise<BookingStatResponseDto[]> {
+    return this.bookingStatisticService.getAllBookingByDatePeriod(query);
   }
 
   @ApiOperation({
@@ -75,8 +75,8 @@ export class BookingStatisticController {
     description: 'Bad Request',
   })
   @Get('car-bookings/:id')
-  getCarBookings(@Param('id') id: number):Promise<BookingStatResponseDto> {
-    return this.bookingStatisticService.getCarBookings(id);
+  getBookingById(@Param('id') id: number):Promise<BookingStatResponseDto> {
+    return this.bookingStatisticService.getBookingById(id);
   }
 
   @ApiOperation({
@@ -93,10 +93,10 @@ export class BookingStatisticController {
     description: 'Bad Request',
   })
   @Get('car-bookings-date/:id')
-  getCarBookingsByDate(
+  getBookingByIdByDatePeriod(
     @Param('id') id: number,
     @Query() query: GetBookingByDateQuery,
   ):Promise<BookingStatResponseDto> {
-    return this.bookingStatisticService.getCarBookingsByDate(id, query);
+    return this.bookingStatisticService.getBookingByIdByDatePeriod(id, query);
   }
 }

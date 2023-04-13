@@ -9,7 +9,7 @@ import { plainToInstance } from 'class-transformer';
 export class BookingStatisticRepository {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async getAllCarsBookings(): Promise<BookingStatResponseDto[]> {
+  async getAllBooking(): Promise<BookingStatResponseDto[]> {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 
@@ -34,7 +34,7 @@ export class BookingStatisticRepository {
     return plainToInstance(BookingStatResponseDto, databaseResponse.rows)
   }
 
-  async getCarBookings(id: number) : Promise<BookingStatResponseDto>  {
+  async getBookingById(id: number) : Promise<BookingStatResponseDto>  {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 
@@ -59,7 +59,7 @@ export class BookingStatisticRepository {
     return plainToInstance(BookingStatResponseDto, databaseResponse.rows[0])
   }
 
-  async getAllCarsBookingsByDatePeriod(params: GetBookingByDateQuery) : Promise<BookingStatResponseDto[]>  {
+  async getAllBookingByDatePeriod(params: GetBookingByDateQuery) : Promise<BookingStatResponseDto[]>  {
     
     const databaseResponse = await this.databaseService.runQuery(
       `
@@ -87,7 +87,7 @@ export class BookingStatisticRepository {
     return plainToInstance(BookingStatResponseDto, databaseResponse.rows)
   }
 
-  async getCarBookingsByDatePeriod(id: number, params: GetBookingByDateQuery) : Promise<BookingStatResponseDto> {
+  async getBookingByIdByDatePeriod(id: number, params: GetBookingByDateQuery) : Promise<BookingStatResponseDto> {
     const databaseResponse = await this.databaseService.runQuery(
       `
       SELECT 

@@ -10,27 +10,27 @@ export class BookingStatisticService {
     private readonly bookingStatRepository: BookingStatisticRepository,
   ) {}
 
-  getAllCarsBookings():Promise<BookingStatResponseDto[]> {
-    return this.bookingStatRepository.getAllCarsBookings();
+  getAllBooking():Promise<BookingStatResponseDto[]> {
+    return this.bookingStatRepository.getAllBooking();
   }
 
-  getCarBookings(id: number):Promise<BookingStatResponseDto> {
-    return this.bookingStatRepository.getCarBookings(id);
+  getBookingById(id: number):Promise<BookingStatResponseDto> {
+    return this.bookingStatRepository.getBookingById(id);
   }
 
-  getAllCarsBookingsByDate(query: GetBookingByDateQuery):Promise<BookingStatResponseDto[]> {
+  getAllBookingByDatePeriod(query: GetBookingByDateQuery):Promise<BookingStatResponseDto[]> {
     if (!query) {
       throw new BadRequestException(INCORRECT_PARAMS);
     }
     
-    return this.bookingStatRepository.getAllCarsBookingsByDatePeriod(query);
+    return this.bookingStatRepository.getAllBookingByDatePeriod(query);
   }
 
-  getCarBookingsByDate(id: number, query: GetBookingByDateQuery):Promise<BookingStatResponseDto> {
+  getBookingByIdByDatePeriod(id: number, query: GetBookingByDateQuery):Promise<BookingStatResponseDto> {
     if (!query) {
       throw new BadRequestException(INCORRECT_PARAMS);
     }
     
-    return this.bookingStatRepository.getCarBookingsByDatePeriod(id, query);
+    return this.bookingStatRepository.getBookingByIdByDatePeriod(id, query);
   }
 }

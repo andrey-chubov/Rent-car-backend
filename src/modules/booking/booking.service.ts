@@ -30,8 +30,8 @@ export class BookingService {
     return this.bookingRepository.create(createBookingDto, duration, price);
   }
 
-  getBookingByCar(id: number): Promise<BookingResponseDto[]>  {
-    return this.bookingRepository.getBookingsByCarID(id);
+  getBookingByCarId(id: number): Promise<BookingResponseDto[]>  {
+    return this.bookingRepository.getBookingByCarId(id);
   }
 
   getAllBooking(): Promise<BookingResponseDto[]>  {
@@ -43,7 +43,7 @@ export class BookingService {
     dateFinish: Date,
     carId: number,
   ): Promise<void> {
-    const bookings: BookingResponseDto[] = await this.bookingRepository.getBookingsByCarID(
+    const bookings: BookingResponseDto[] = await this.bookingRepository.getBookingByCarId(
       carId,
     );
 
